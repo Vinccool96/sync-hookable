@@ -4,7 +4,8 @@
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![packagephobia][packagephobia-src]][packagephobia-href]
 [![Github Actions CI][github-actions-ci-src]][github-actions-ci-href]
-> Awaitable hook system
+
+> Synchronous hook system
 
 ## Install
 
