@@ -19,45 +19,45 @@ describe("debugger", () => {
     vi.restoreAllMocks()
   })
 
-  it("should respect `tag` option", async () => {
+  it("should respect `tag` option", () => {
     createDebugger(hooks, { tag: "tag" })
-    await hooks.callHook("hook")
+    hooks.callHook("hook")
     expect(console.time).toBeCalledWith(expect.stringContaining("[tag] hook"))
     expect(console.timeEnd).toBeCalledWith(expect.stringContaining("[tag] hook"))
   })
-  it("should respect `inspect` option", async () => {
+  it("should respect `inspect` option", () => {
     createDebugger(hooks, { inspect: true })
-    await hooks.callHook("hook")
+    hooks.callHook("hook")
     expect(console.time).toBeCalledWith(expect.stringContaining("hook"))
     expect(console.timeLog).toBeCalledWith("hook", [])
   })
-  it("should respect `group` option", async () => {
+  it("should respect `group` option", () => {
     createDebugger(hooks, { group: true })
-    await hooks.callHook("hook")
+    hooks.callHook("hook")
     expect(console.groupCollapsed).toBeCalled()
     expect(console.groupEnd).toBeCalled()
   })
-  it("should respect `filter` option as string", async () => {
+  it("should respect `filter` option as string", () => {
     createDebugger(hooks, { filter: "other:" })
-    await hooks.callHook("hook")
+    hooks.callHook("hook")
     expect(console.time).not.toBeCalled()
-    await hooks.callHook("other:hook")
+    hooks.callHook("other:hook")
     expect(console.time).toBeCalled()
   })
-  it("should respect `filter` option as function", async () => {
+  it("should respect `filter` option as function", () => {
     createDebugger(hooks, { filter: (id) => id === "other:hook" })
-    await hooks.callHook("hook")
+    hooks.callHook("hook")
     expect(console.time).not.toBeCalled()
-    await hooks.callHook("other:hook")
+    hooks.callHook("other:hook")
     expect(console.time).toBeCalled()
   })
-  it("should allowing closing debugger", async () => {
+  it("should allowing closing debugger", () => {
     const debug = createDebugger(hooks)
-    await hooks.callHook("hook")
+    hooks.callHook("hook")
     expect(console.time).toBeCalled()
     debug.close()
     vi.clearAllMocks()
-    await hooks.callHook("hook")
+    hooks.callHook("hook")
     expect(console.time).not.toBeCalled()
     debug.close()
   })
