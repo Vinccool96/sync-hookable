@@ -14,5 +14,6 @@ module.exports = {
     "prefer-const": ["warn", { destructuring: "all" }],
     "spaced-comment": "warn",
     curly: "error",
+    "@typescript-eslint/no-explicit-any": 0,
   },
 }
