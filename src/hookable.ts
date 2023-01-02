@@ -166,7 +166,8 @@ export class Hookable<
     this._before = this._before || []
     this._before.push(function_)
     return () => {
-      const index = this._before?.indexOf(function_) || -1
+      const b = this._before as HookCallback[]
+      const index = b.indexOf(function_)
       if (index !== -1) {
         this._before?.splice(index, 1)
       }
@@ -177,7 +178,8 @@ export class Hookable<
     this._after = this._after || []
     this._after.push(function_)
     return () => {
-      const index = this._after?.indexOf(function_) || -1
+      const a = this._after as HookCallback[]
+      const index = a.indexOf(function_)
       if (index !== -1) {
         this._after?.splice(index, 1)
       }
