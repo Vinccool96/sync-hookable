@@ -166,9 +166,9 @@ export class Hookable<
     this._before = this._before || []
     this._before.push(function_)
     return () => {
-      const index = this._before!.indexOf(function_)
+      const index = this._before?.indexOf(function_) || -1
       if (index !== -1) {
-        this._before!.splice(index, 1)
+        this._before?.splice(index, 1)
       }
     }
   }
@@ -177,9 +177,9 @@ export class Hookable<
     this._after = this._after || []
     this._after.push(function_)
     return () => {
-      const index = this._after!.indexOf(function_)
+      const index = this._after?.indexOf(function_) || -1
       if (index !== -1) {
-        this._after!.splice(index, 1)
+        this._after?.splice(index, 1)
       }
     }
   }
